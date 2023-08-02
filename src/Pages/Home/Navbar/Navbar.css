@@ -1,0 +1,20 @@
+
+
+.navbar1{
+    font-family: 'Rancho', cursive;
+    background-image: url("../../../assets/images/more/15.jpg");
+}
+.text{
+    font-size: 40px;
+    font-weight: 400;
+    color: #FFFFFF;
+    
+}
+.nav{
+width: 1920px;
+height: 120px;
+}
+.logo{
+    width: 75px;
+    height: 90px;
+}
