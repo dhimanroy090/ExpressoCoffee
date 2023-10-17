@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
+
 .banner{
     font-family: 'Rancho', cursive;
     background-image: url("../../../assets/images/more/3.png");
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    /* width: 100%;
-    height: 100vh; */
+    width: 100%;
+    height: 100vh;
     margin: 0;
 
 }
@@ -15,4 +17,19 @@
     color: #FFFFFF;
     padding-left: 889px;
 
+}
+
+.des{
+    font-family: 'Raleway';
+    font-weight: 400;
+    size: 16px;
+}
+
+.pop_bg{
+    background-image: url("../../../assets/images/more/1.png");
+    /* width: 100%; */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
 }

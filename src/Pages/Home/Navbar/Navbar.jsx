@@ -4,7 +4,7 @@ import "./Navbar.css";
 const Navbar = () => {
   return (
     <div>
-      <nav className="navbar1 flex items-center gap-4 justify-center">
+      <nav className="navbar1 flex items-center  justify-center">
         <img className="logo" src={logo} />
         <h2 className="text">Espresso Emporium</h2>
       </nav>

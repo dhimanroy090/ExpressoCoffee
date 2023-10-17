@@ -1,0 +1,10 @@
+.foot_bg{
+    Background-image: url("/src/assets/images/more/13.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.right{
+    background-image: url("/src/assets/images/more/24.jpg");
+}

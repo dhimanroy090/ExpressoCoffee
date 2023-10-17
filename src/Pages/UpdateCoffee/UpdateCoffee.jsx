@@ -1,13 +1,14 @@
-import { Link } from 'react-router-dom';
-// import arr from '../../assets/images/arrow.png';
 import { AiOutlineArrowLeft } from "react-icons/ai";
-import Swal from 'sweetalert2';
+import { Link, useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
-
-const Addcoffee = () => {
-  const handleAddCoffe = (e) => {
-    e.preventDefault();
+const UpdateCoffee = () => {
+    const coffee = useLoaderData();
+    const { _id,name, chef, price, supplier, category, details, photo } = coffee;
+    console.log(coffee)
+    const handleUpdateCoffe = (e) =>{
+        e.preventDefault();
     const from = e.target;
     const name = from.coffee.value;
     const chef = from.chef.value;
@@ -17,32 +18,33 @@ const Addcoffee = () => {
     const details = from.details.value;
     const photo = from.photo.value;
 
-    const addcoffee = { name, chef, price, supplier, category, details, photo };
-    fetch('http://localhost:5000/coffees',{
-        method: 'POST',
+    const updatedCoffee = { name, chef, price, supplier, category, details, photo };
+    console.log(updatedCoffee);
+    fetch(`http://localhost:5000/coffees/${_id}`,{
+        method:'PUT',
         headers:{
-            "content-type": "application/json"
+            'content-type':'application/json'
         },
-        body: JSON.stringify(addcoffee)
+        body:JSON.stringify(updatedCoffee)
     })
-    .then(res => res.json())
-    .then (data => {
-        if(data.insertedId){
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data)
+        if(data.modifiedCount >0){
+
             Swal.fire({
-                position: 'center',
+                position: 'top-end',
                 icon: 'success',
-                title: 'Sucessfully added Coffee',
+                title: 'Updated Successfully',
                 showConfirmButton: false,
                 timer: 1500
               })
         }
-        from.reset();
     })
-    console.log(addcoffee);
-  };
-
-  return (
-    <div>
+    }
+    return (
+        <div>
+            <div>
 
 
        <div className='mt-2 mx-16'>
@@ -50,15 +52,12 @@ const Addcoffee = () => {
        </div>
 
       <div className="text-center w-[80%] mx-auto">
-        <h2 className="text-[45px] font-semibold my-5">Add A Coffee</h2>
+        <h2 className="text-[45px] font-semibold my-5">Update Existing Coffee Details</h2>
         <p className="text-lg">
-          It is a long established fact that a reader will be distraceted by the
-          readable content of a page when looking at its layout. The point of
-          using Lorem Ipsum is that it has a more-or-less normal distribution of
-          letters, as opposed to using Content here.
+        It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.
         </p>
       </div>
-      <form onSubmit={handleAddCoffe} className="w-[90%] mx-auto">
+      <form onSubmit={handleUpdateCoffe} className="w-[90%] mx-auto">
         <div className="flex gap-3">
           <div className="form-control w-full">
             <label className="label">
@@ -68,6 +67,7 @@ const Addcoffee = () => {
               <input
                 type="text"
                 placeholder="Name"
+                defaultValue={name}
                 className="input input-bordered w-full"
                 name="coffee"
               />
@@ -82,6 +82,7 @@ const Addcoffee = () => {
               <input
                 type="text"
                 placeholder="Chef"
+                defaultValue={chef}
                 className="input input-bordered w-full"
                 name="chef"
               />
@@ -97,6 +98,7 @@ const Addcoffee = () => {
               <input
                 type="text"
                 placeholder="Suppllier"
+                defaultValue={supplier}
                 className="input input-bordered w-full"
                 name="supplier"
               />
@@ -111,6 +113,7 @@ const Addcoffee = () => {
               <input
                 type="number"
                 placeholder="price"
+                defaultValue={price}
                 className="input input-bordered w-full"
                 name="price"
               />
@@ -126,6 +129,7 @@ const Addcoffee = () => {
               <input
                 type="text"
                 placeholder="Category"
+                defaultValue={category}
                 className="input input-bordered w-full"
                 name="category"
               />
@@ -140,6 +144,7 @@ const Addcoffee = () => {
               <input
                 type="text"
                 placeholder="Details"
+                defaultValue={details}
                 className="input input-bordered w-full"
                 name="details"
               />
@@ -155,6 +160,7 @@ const Addcoffee = () => {
               <input
                 type="text"
                 placeholder="PhotoURL"
+                defaultValue={photo}
                 className="input input-bordered w-full"
                 name="photo"
               />
@@ -163,13 +169,14 @@ const Addcoffee = () => {
         </div>
 
         <input
-          className="btn btn-secondary w-full my-5"
+          className="btn  bg-[#D2B48C]  border-[#331A15] w-full my-5"
           type="submit"
-          value="Add coffee"
+          value="Update Coffee Details"
         />
       </form>
     </div>
-  );
+        </div>
+    );
 };
 
-export default Addcoffee;
+export default UpdateCoffee;
